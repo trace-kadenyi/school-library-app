@@ -10,11 +10,15 @@ class Person
   attr_reader :id
 
   # private method
+  private
+
   def of_age?
     age >= 18
   end
 
   # public method
+  public
+
   def can_use_services?
     if of_age? || parent_permission
       true
@@ -22,7 +26,4 @@ class Person
       false
     end
   end
-  # declare private and public methods
-  private :of_age?
-  public :can_use_services?
 end
