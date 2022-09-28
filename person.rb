@@ -1,25 +1,30 @@
-require_relative 'nameable'
 require_relative 'decorators'
 
 class Person
+  attr_accessor :name, :age, :rentals
+  attr_reader :id
+
   def initialize(age, name = 'Unknown', parent_permission: true)
     @id = Random.rand(1...1000)
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @rentals = []
   end
-
-  attr_accessor :name, :age
-  attr_reader :id
 
   # can use services
   def can_use_services?
     of_age? || @parent_permission
   end
 
-  # adjust name
+  # validate name
   def correct_name
     @name
+  end
+
+  #  add rental
+  def add_rental(date, book)
+    Rental.new(date, book, self)
   end
 
   # private method
@@ -29,12 +34,3 @@ class Person
     age >= 18
   end
 end
-
-person = Person.new(22, 'maximilianus')
-puts person.correct_name
-
-CapitalizedPerson = CapitalizeDecorator.new(person)
-puts CapitalizedPerson.correct_name
-
-CapitalizedTrimmedPerson = TrimmerDecorator.new(CapitalizedPerson)
-puts CapitalizedTrimmedPerson.correct_name
