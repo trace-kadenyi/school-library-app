@@ -22,6 +22,13 @@ you@your-Pc-name:~$ cd <folder>
 ```
 #### 3. Press Enter to navigate to your local clone.
 
+#### 4. Go to your terminal and run the app with the following command:
+```bash command
+ruby main.rb
+```
+#### 5. Make your selections from the menu that appears accordingly.
+- For example, you can create books and persons (student or teacher) as well as list the number of books and persons on the app among others.
+
 ## Authors
 
 👤 **Tracey Kadenyi**
