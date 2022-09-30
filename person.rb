@@ -1,4 +1,5 @@
 require_relative 'decorators'
+require 'pry'
 
 class Person
   attr_accessor :name, :age, :rentals
@@ -34,3 +35,13 @@ class Person
     age >= 18
   end
 end
+
+person = Person.new('John', 18, parent_permission: true)
+puts person.can_use_services?
+puts person.correct_name
+
+# start a REPL session
+binding.pry
+
+# program resumes here (after pry session)
+puts 'program resumes here.'
