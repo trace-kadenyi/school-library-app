@@ -25,6 +25,7 @@ class App
       create_teacher
     else
       # if input is not 1 or 2
+      puts
       puts 'That is not a valid input'
     end
   end
@@ -54,9 +55,16 @@ class App
       return
     end
 
-    student = Student.new(age, name, parent_permission)
+    puts 'Enter student\'s classroom: '
+    classroom = gets.chomp
+    student_class = Classroom.new(classroom)
+
+    student = Student.new(age, name, student_class, parent_permission)
     @persons << student
+    puts
     puts 'Student created successfully'
+    puts
+    sleep(2)
   end
 
   # create a teacher
@@ -76,7 +84,10 @@ class App
 
     teacher = Teacher.new(age, name, specialization)
     @persons << teacher
+    puts
     puts 'Teacher created successfully'
+    puts
+    sleep(2)
   end
 
   # create a book
@@ -89,7 +100,10 @@ class App
 
     book = Book.new(title, author)
     @books << book
+    puts
     puts 'Book created successfully'
+    puts
+    sleep(2)
   end
 
   # list all books
@@ -100,8 +114,10 @@ class App
       end
     else
       # if no books exist
+      puts
       puts 'There are no books'
     end
+    puts
     sleep(2)
   end
 
@@ -109,12 +125,18 @@ class App
   def list_people
     if @persons.length.positive?
       @persons.each do |person|
-        puts "[#{person.class}] Name: #{person.name}, Age: #{person.age} years, ID: #{person.id}"
+        if person.instance_of?(Student)
+          puts "[Student] Name: #{person.name}, Age: #{person.age} years, Class: #{person.classroom.label}, Parent Permission: #{person.parent_permission}, ID: #{person.id}"
+        elsif person.instance_of?(Teacher)
+          puts "[Teacher] Name: #{person.name}, Age: #{person.age} years, Specialization: #{person.specialization}, ID: #{person.id}"
+        end
       end
     else
       # if no persons exist
+      puts
       puts 'There are no people'
     end
+    puts
     sleep(2)
   end
 
@@ -138,11 +160,14 @@ class App
 
       rental = Rental.new(date, @persons[person_index], @books[book_index])
       @rentals << rental
+      puts
       puts 'Rental created successfully'
     else
       # if no books or persons exist
-      puts 'No books or persons found. Please create at least one book and person first'
+      puts
+      puts 'No books or persons found. Please create at least one book and person first.'
     end
+    puts
     sleep(2)
   end
 
@@ -152,15 +177,17 @@ class App
     person_id = gets.chomp.to_i
 
     rentals = @rentals.filter { |rental| rental.person.id == person_id }
+    puts
     if rentals.length.positive?
       puts 'Rentals:'
       rentals.each_with_index do |rental, index|
-        puts "#{index}). Date: #{rental.date}, Book: '#{rental.book.title}' by #{rental.book.author}"
+        puts "#{index}). #{rental.person.name} rented #{rental.book.title} by #{rental.book.author} on #{rental.date}"
       end
     else
       # if no rentals exist
       puts 'No rentals found for the given person ID'
     end
     sleep(2)
+    puts
   end
 end
