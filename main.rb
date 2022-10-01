@@ -4,11 +4,12 @@ class Main
   def initialize
     @app = App.new
     @option = 0
+    @run = true
   end
 
   def menu_options
     puts 'WELCOME TO THE SCHOOL LIBRARY APP!'
-    while @option != 7
+    while @run
       puts 'Please choose an option from the menu below by entering a number: '
       puts '1 - List all books'
       puts '2 - List all people'
@@ -16,7 +17,8 @@ class Main
       puts '4 - Create a book'
       puts '5 - Create a rental'
       puts '6 - List all rentals for a given person id'
-      puts '7 - Exit'
+      puts '7 - List all rented books'
+      puts '8 - Exit'
       start_app
     end
   end
@@ -36,6 +38,10 @@ class Main
       @app.create_rental
     when 6
       @app.list_rentals
+    when 7
+      @app.list_rented_books
+    when 8
+      @run = false
     end
   end
 
