@@ -190,21 +190,4 @@ class App
     sleep(2)
     puts
   end
-
-  # list all rented books
-  def list_rented_books
-    puts
-    if @rentals.length.positive?
-      puts 'Total books currently rented:'
-      @rentals.each_with_index do |rental, index|
-        puts "#{index}). #{rental.person.name} rented #{rental.book.title} by #{rental.book.author} on #{rental.date}."
-      end
-    else
-      # if no rentals exist
-      puts 'No books are currently rented'
-    end
-    puts
-    sleep(2)
-    puts
-  end
 end
