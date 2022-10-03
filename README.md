@@ -36,6 +36,14 @@ ruby main.rb
 - GitHub: [@TracK92](https://github.com/TracK92)
 - LinkedIn: [Tracey Kadenyi](https://www.linkedin.com/in/tracey-kadenyi/)
 
+## Authors
+
+👤 **Clifford Owusu**
+
+- GitHub: [@sireclifford](https://github.com/sireclifford)
+- LinkedIn: [Clifford Owusu](https://www.linkedin.com/in/sireclifford/)
+
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
