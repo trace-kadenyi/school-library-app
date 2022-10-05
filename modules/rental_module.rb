@@ -32,7 +32,7 @@ class RentalModule
       puts 'Enter date: '
       date = gets.chomp
 
-      rental = Rental.new(date,person_obj, book_obj)
+      rental = Rental.new(date, person_obj, book_obj)
       rental = rental.to_json
       @rentals << rental
       file.write(JSON[@rentals])
@@ -52,14 +52,12 @@ class RentalModule
     puts 'Enter person ID: '
     person_id = gets.chomp.to_i
 
-   puts 'Rentals: '
+    puts 'Rentals: '
     @rentals.each do |rental|
-      if rental['person']['id'] == person_id
-        puts "Date: #{rental['date']} Book: \"#{rental['book']['title']}\" by #{rental['book']['author']}"
-      end
+      puts "Date: #{rental['date']} Book: \"#{rental['book']['title']}\" by #{rental['book']['author']}" if rental['person']['id'] == person_id
     end
-      # if no rentals exist
-      puts 'No rentals found for the given person ID' if @persons.empty?
+    # if no rentals exist
+    puts 'No rentals found for the given person ID' if @persons.empty?
     sleep(2)
     puts
   end

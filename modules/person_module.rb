@@ -62,10 +62,8 @@ class PersonModule
     @persons << student
     file.write(JSON[@persons])
     file.close
-    puts
     puts 'Student created successfully'
     puts
-    sleep(2)
   end
 
   # create a teacher
