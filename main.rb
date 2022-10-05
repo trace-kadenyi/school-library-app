@@ -1,11 +1,4 @@
 require_relative 'app'
-
-# class Startup
-#   def initialize
-#     @app = App.new
-#   end
-# end
-
 class Main
   def main
     launch = App.new

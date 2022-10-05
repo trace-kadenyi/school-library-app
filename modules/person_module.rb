@@ -2,12 +2,16 @@ require './classroom'
 require './person'
 require './teacher'
 require './student'
+require 'json'
 
 class PersonModule
-  attr_accessor :persons
+  attr_accessor :persons, :file_location
 
-  def initialize(persons)
-    @persons = persons
+  def initialize
+    @file_location = 'storage/person.json'
+    file = File.open(@file_location, 'a+')
+    @persons = file.size.zero? ? [] : JSON.parse(file.read)
+    file.close
   end
 
   # create a person (teacher or student, not a plain Person)
@@ -29,16 +33,15 @@ class PersonModule
 
   # create a student
   def create_student
+    file = File.open(@file_location, 'w')
     puts 'Enter student\'s name: '
     name = gets.chomp
-
     puts 'Enter student\'s age: '
     age = gets.chomp.to_i
     if age < 3 || age > 18
       puts 'Please enter a valid age (between 3 and 18)'
       return
     end
-
     puts 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.capitalize
     case parent_permission
@@ -51,21 +54,21 @@ class PersonModule
       puts 'That is not a valid input. Please enter Y or N'
       return
     end
-
     puts 'Enter student\'s classroom: '
     classroom = gets.chomp
     student_class = Classroom.new(classroom)
-
     student = Student.new(age, name, student_class, parent_permission)
+    student = student.to_json
     @persons << student
-    puts
+    file.write(JSON[@persons])
+    file.close
     puts 'Student created successfully'
     puts
-    sleep(2)
   end
 
   # create a teacher
   def create_teacher
+    file = File.open(@file_location, 'w')
     puts 'Enter teacher\'s name: '
     name = gets.chomp
 
@@ -80,7 +83,10 @@ class PersonModule
     specialization = gets.chomp
 
     teacher = Teacher.new(age, name, specialization)
+    teacher = teacher.to_json
     @persons << teacher
+    file.write(JSON[@persons])
+    file.close
     puts
     puts 'Teacher created successfully'
     puts
@@ -91,11 +97,7 @@ class PersonModule
   def list_persons
     if @persons.length.positive?
       @persons.each do |person|
-        if person.instance_of?(Student)
-          puts "[Student] Name: #{person.name}, Age: #{person.age} years, Class: #{person.classroom.label}, Parent Permission: #{person.parent_permission}, ID: #{person.id}"
-        elsif person.instance_of?(Teacher)
-          puts "[Teacher] Name: #{person.name}, Age: #{person.age} years, Specialization: #{person.specialization}, ID: #{person.id}"
-        end
+        puts "[#{person['json_class']}] Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
       end
     else
       # if no persons exist
