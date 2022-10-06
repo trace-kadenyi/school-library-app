@@ -29,6 +29,35 @@ ruby main.rb
 #### 5. Make your selections from the menu that appears accordingly.
 - For example, you can create books and persons (student or teacher) as well as list the number of books and persons on the app among others.
 
+#### 6. Run Tests
+- This app uses Rspec, a unit testing framework for RUby. To run various tests, please enter the following commands on the terminal:
+
+```bash command
+gem install rspec
+```
+
+```bash command
+rspec specs/book_spec.rb
+```
+```bash command
+rspec specs/classroom_spec.rb
+```
+```bash command
+rspec specs/person_spec.rb
+```
+```bash command
+rspec specs/student_spec.rb
+```
+```bash command
+rspec specs/teacher_spec.rb
+```
+```bash command
+rspec specs/rental_spec.rb
+```
+```bash command
+rspec specs/decorator_spec.rb
+```
+
 ## Authors
 
 👤 **Tracey Kadenyi**
