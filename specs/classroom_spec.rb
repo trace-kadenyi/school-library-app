@@ -7,7 +7,7 @@ describe Classroom do
     expect(classroom.students).to eq([])
   end
 
- it 'should have a label' do
+  it 'should have a label' do
     expect(classroom.label).to eq('Art and Crafts')
   end
 

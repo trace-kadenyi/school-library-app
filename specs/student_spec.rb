@@ -2,7 +2,7 @@ require_relative '../student'
 require_relative '../classroom'
 
 describe Student do
-  let(:student) { Student.new(12, 'Leo Masese', 'Art', parent_permission:true) }
+  let(:student) { Student.new(12, 'Leo Masese', 'Art', parent_permission: true) }
 
   it('should have a name') do
     expect(student.name).to eq('Leo Masese')
@@ -20,7 +20,7 @@ describe Student do
     expect(student.parent_permission).to eq(true)
   end
 
-   it 'should allow student to play hooky' do
+  it 'should allow student to play hooky' do
     expect(student.play_hooky).to eq("¯\(ツ)/¯")
   end
 

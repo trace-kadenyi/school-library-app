@@ -1,7 +1,7 @@
 require_relative '../teacher'
 
-describe Teacher  do
-  let(:teacher) { Teacher.new(23, "Troy Trueheart", "Math") }
+describe Teacher do
+  let(:teacher) { Teacher.new(23, 'Troy Trueheart', 'Math') }
 
   it 'should have a name' do
     expect(teacher.name).to eq('Troy Trueheart')
