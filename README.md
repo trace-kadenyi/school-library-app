@@ -40,7 +40,7 @@ gem install rspec
 rspec specs/book_spec.rb
 ```
 ```bash command
-rrspec specs/classroom_spec.rb
+rspec specs/classroom_spec.rb
 ```
 ```bash command
 rspec specs/person_spec.rb
